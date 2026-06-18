@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#79bf83">
+    <title>花园防线</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="topbar" aria-label="游戏状态">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <h1>花园防线</h1>
+            <p id="statusText">守住会被狗狗踩乱的花园</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter sun-meter">
+            <span class="meter-icon sun-orb" aria-hidden="true"></span>
+            <span id="sunCount">120</span>
+          </div>
+          <div class="meter">
+            <span>波次</span>
+            <strong id="waveCount">1</strong>
+          </div>
+          <div class="meter level-meter">
+            <span id="levelName">后院晨光</span>
+          </div>
+          <div class="meter">
+            <span id="scoreCount">0</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="shovelBtn" type="button" title="铲掉植物">
+            <span aria-hidden="true">铲</span>
+          </button>
+          <button id="soundBtn" type="button" title="音效">
+            <span aria-hidden="true">♪</span>
+          </button>
+          <button id="pauseBtn" type="button" title="暂停">
+            <span aria-hidden="true">||</span>
+          </button>
+          <button id="restartBtn" type="button" title="重开">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="play-area">
+        <aside class="side-panel" aria-label="游戏控制">
+          <div class="tool-hint">
+            <strong>工具</strong>
+            <span id="toolText">选择植物后点击草坪种下</span>
+          </div>
+          <div id="levelTabs" class="level-tabs" aria-label="关卡"></div>
+          <div id="deck" class="deck" aria-label="植物卡片"></div>
+        </aside>
+
+        <div class="board-wrap">
+          <div id="board" class="board" aria-label="草坪棋盘"></div>
+          <div id="entities" class="entities" aria-hidden="true"></div>
+          <div id="projectiles" class="projectiles" aria-hidden="true"></div>
+          <div id="floating" class="floating" aria-hidden="true"></div>
+          <div id="overlay" class="overlay hidden">
+            <div class="overlay-panel">
+              <h2 id="overlayTitle">准备开始</h2>
+              <p id="overlayText">点击开始后，第一队狗狗会从右侧出现。</p>
+              <button id="startBtn" type="button">开始</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
