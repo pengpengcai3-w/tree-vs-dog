@@ -24,9 +24,11 @@
             <span id="sunCount">120</span>
           </div>
           <div class="meter">
-            <span>第</span>
+            <span>波次</span>
             <strong id="waveCount">1</strong>
-            <span>波</span>
+          </div>
+          <div class="meter level-meter">
+            <span id="levelName">后院晨光</span>
           </div>
           <div class="meter">
             <span id="scoreCount">0</span>
@@ -44,22 +46,9 @@
       </section>
 
       <section class="play-area">
-        <aside class="deck" aria-label="植物卡片">
-          <button class="plant-card selected" type="button" data-plant="sprout">
-            <span class="plant-art sprout-art" aria-hidden="true"></span>
-            <span class="plant-name">豆苗</span>
-            <span class="plant-cost">50</span>
-          </button>
-          <button class="plant-card" type="button" data-plant="sunbloom">
-            <span class="plant-art sunbloom-art" aria-hidden="true"></span>
-            <span class="plant-name">日葵</span>
-            <span class="plant-cost">25</span>
-          </button>
-          <button class="plant-card" type="button" data-plant="bark">
-            <span class="plant-art bark-art" aria-hidden="true"></span>
-            <span class="plant-name">木盾</span>
-            <span class="plant-cost">75</span>
-          </button>
+        <aside class="side-panel" aria-label="游戏控制">
+          <div id="levelTabs" class="level-tabs" aria-label="关卡"></div>
+          <div id="deck" class="deck" aria-label="植物卡片"></div>
         </aside>
 
         <div class="board-wrap">
