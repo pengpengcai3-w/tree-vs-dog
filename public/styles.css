@@ -12,7 +12,9 @@
   --sun: #f7c84c;
   --danger: #b7473f;
   --water: #407c9b;
-  --shadow: 0 16px 45px rgba(36, 54, 44, 0.18);
+  --rose: #d86d6d;
+  --violet: #7c6ab0;
+  --shadow: 0 18px 48px rgba(32, 50, 40, 0.18);
   font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
 }
 
@@ -24,9 +26,10 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(233, 241, 226, 0.84)),
-    radial-gradient(circle at 8% 10%, #e5b35a 0 8rem, transparent 8.2rem),
-    linear-gradient(135deg, #ddeab8 0%, #bfdca2 42%, #8bb9bd 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(233, 241, 226, 0.88)),
+    radial-gradient(circle at 9% 9%, #eebf63 0 7rem, transparent 7.15rem),
+    radial-gradient(circle at 90% 18%, rgba(255, 255, 255, 0.48) 0 6rem, transparent 6.2rem),
+    linear-gradient(135deg, #d7e8a9 0%, #a3d18a 44%, #7db7b9 100%);
   color: var(--ink);
   display: grid;
   place-items: center;
@@ -54,7 +57,8 @@ button {
   padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.76);
   border-radius: 8px;
-  background: rgba(249, 251, 246, 0.88);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(247, 252, 239, 0.88));
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
 }
@@ -76,6 +80,7 @@ button {
     linear-gradient(-45deg, transparent 41%, #39a85e 42% 58%, transparent 59%),
     #f4f0cf;
   border: 2px solid #5f8b4f;
+  box-shadow: inset 0 -5px 0 rgba(35, 122, 69, 0.16);
   flex: 0 0 auto;
 }
 
@@ -143,6 +148,12 @@ h1 {
   box-shadow: 0 2px 0 rgba(40, 69, 50, 0.18);
 }
 
+.actions button.active {
+  color: white;
+  background: #2f9e58;
+  border-color: #1f7948;
+}
+
 .actions button:hover,
 .overlay button:hover,
 .plant-card:hover {
@@ -162,8 +173,30 @@ h1 {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.74);
-  background: rgba(249, 251, 246, 0.9);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(245, 250, 236, 0.9));
   box-shadow: var(--shadow);
+}
+
+.tool-hint {
+  min-height: 58px;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid #d9e4d0;
+  border-radius: 8px;
+  background: #fffdf2;
+}
+
+.tool-hint strong {
+  font-size: 0.82rem;
+  color: #2f6e49;
+}
+
+.tool-hint span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .level-tabs {
@@ -175,7 +208,7 @@ h1 {
   min-height: 36px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff, #f4f8ed);
   cursor: pointer;
   font-weight: 800;
   color: #2c4635;
@@ -202,7 +235,8 @@ h1 {
   min-height: 112px;
   border: 2px solid transparent;
   border-radius: 8px;
-  background: #fffdf3;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 251, 231, 0.94));
   display: grid;
   place-items: center;
   gap: 3px;
@@ -213,7 +247,8 @@ h1 {
 
 .plant-card.selected {
   border-color: #2f9e58;
-  background: #eef9e6;
+  background: linear-gradient(180deg, #f8fff2, #e6f7d9);
+  box-shadow: inset 0 0 0 3px rgba(47, 158, 88, 0.11);
 }
 
 .plant-card.disabled {
@@ -385,9 +420,11 @@ h1 {
   min-height: 440px;
   border-radius: 8px;
   overflow: hidden;
-  border: 3px solid #654331;
+  border: 3px solid #6b4a30;
   box-shadow: var(--shadow);
-  background: #8fcf69;
+  background:
+    linear-gradient(90deg, rgba(103, 65, 42, 0.22) 0 7%, transparent 7%),
+    #8fcf69;
 }
 
 .board {
@@ -407,6 +444,14 @@ h1 {
   position: relative;
   cursor: pointer;
   touch-action: manipulation;
+}
+
+.board.shovel-mode .cell {
+  cursor: grab;
+}
+
+.board.shovel-mode .cell:hover {
+  outline-color: rgba(216, 109, 109, 0.8);
 }
 
 .cell:nth-child(even) {
@@ -433,7 +478,7 @@ h1 {
 }
 
 .plant,
-.zombie,
+.dog,
 .pea,
 .sun-token,
 .hit-pop {
@@ -444,6 +489,7 @@ h1 {
 .plant {
   width: 58px;
   height: 62px;
+  z-index: 4;
 }
 
 .plant::after {
@@ -457,6 +503,26 @@ h1 {
   background: rgba(27, 61, 33, 0.24);
 }
 
+.leaf {
+  position: absolute;
+  width: 20px;
+  height: 13px;
+  border-radius: 80% 20% 80% 20%;
+  background: linear-gradient(135deg, #63bd62, #237a45);
+  bottom: 9px;
+  z-index: 0;
+}
+
+.leaf-a {
+  left: 10px;
+  transform: rotate(-28deg);
+}
+
+.leaf-b {
+  right: 8px;
+  transform: rotate(24deg) scaleX(-1);
+}
+
 .plant.sprout .head {
   position: absolute;
   left: 13px;
@@ -466,6 +532,7 @@ h1 {
   border-radius: 50%;
   background: linear-gradient(135deg, #55bd6e, #1f874d);
   border: 2px solid #17693b;
+  box-shadow: inset 7px -5px 0 rgba(0, 0, 0, 0.08);
 }
 
 .plant.sprout .head::before,
@@ -510,6 +577,7 @@ h1 {
   background:
     radial-gradient(circle at 50% 50%, #7b4a28 0 24%, transparent 25%),
     conic-gradient(#f4ce42 0 12%, #e99831 12% 22%, #f4ce42 22% 34%, #e99831 34% 44%, #f4ce42 44% 57%, #e99831 57% 67%, #f4ce42 67% 80%, #e99831 80% 90%, #f4ce42 90%);
+  box-shadow: 0 0 18px rgba(247, 200, 76, 0.38);
 }
 
 .plant.bark .head {
@@ -613,121 +681,246 @@ h1 {
   animation: armPepper 300ms ease infinite alternate;
 }
 
-.zombie {
-  width: 48px;
-  height: 70px;
+.dog {
+  width: 62px;
+  height: 60px;
+  z-index: 5;
+}
+
+.dog .body {
+  position: absolute;
+  left: 8px;
+  top: 23px;
+  width: 42px;
+  height: 26px;
+  border-radius: 17px 20px 15px 18px;
+  background: linear-gradient(180deg, #f6efe2, #cfb58e);
+  border: 2px solid rgba(73, 54, 38, 0.55);
+  box-shadow: inset -8px -5px 0 rgba(86, 57, 36, 0.1);
+}
+
+.dog .head {
+  position: absolute;
+  left: 37px;
+  top: 10px;
+  width: 27px;
+  height: 27px;
+  border-radius: 48% 52% 45% 52%;
+  background: linear-gradient(180deg, #fff8ec, #d9c19b);
+  border: 2px solid rgba(73, 54, 38, 0.55);
+  z-index: 3;
+}
+
+.dog .head::before,
+.dog .head::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2b241d;
+}
+
+.dog .head::before {
+  left: 8px;
+}
+
+.dog .head::after {
+  right: 7px;
+}
+
+.dog .snout {
+  position: absolute;
+  right: -1px;
+  top: 23px;
+  width: 20px;
+  height: 13px;
+  border-radius: 50%;
+  background: #f6efe2;
+  border: 2px solid rgba(73, 54, 38, 0.45);
   z-index: 4;
 }
 
-.zombie .body {
+.dog .snout::after {
+  content: "";
   position: absolute;
-  left: 13px;
-  top: 24px;
-  width: 26px;
-  height: 34px;
-  border-radius: 7px;
-  background: linear-gradient(180deg, #63706b, #414c49);
-  border: 2px solid #293331;
+  right: 3px;
+  top: 3px;
+  width: 5px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2b241d;
 }
 
-.zombie.runner .body {
-  background: linear-gradient(180deg, #765e87, #453752);
-  border-color: #31253a;
-}
-
-.zombie.bucket .gear {
+.dog .ear {
   position: absolute;
-  left: 8px;
-  top: 0;
-  width: 34px;
+  top: 7px;
+  width: 13px;
   height: 18px;
-  border-radius: 7px 7px 12px 12px;
-  background: linear-gradient(180deg, #d7dce2, #7e8b95);
-  border: 2px solid #59646d;
+  border-radius: 70% 30% 60% 40%;
+  background: #c59663;
+  border: 2px solid rgba(73, 54, 38, 0.42);
   z-index: 2;
 }
 
-.zombie.brute {
-  width: 58px;
-  height: 82px;
+.dog .ear-a {
+  left: 37px;
+  transform: rotate(-18deg);
 }
 
-.zombie.brute .head {
-  left: 11px;
-  width: 38px;
-  height: 34px;
-  background: #7e957d;
+.dog .ear-b {
+  left: 52px;
+  transform: rotate(20deg) scaleX(-1);
 }
 
-.zombie.brute .body {
+.dog .tail {
+  position: absolute;
+  left: 1px;
+  top: 23px;
+  width: 21px;
+  height: 11px;
+  border-radius: 999px;
+  border-top: 4px solid #c59663;
+  transform: rotate(-28deg);
+  animation: tailWag 480ms ease-in-out infinite alternate;
+}
+
+.dog .feet {
+  position: absolute;
   left: 12px;
-  top: 29px;
-  width: 36px;
-  height: 43px;
-  background: linear-gradient(180deg, #6e6a59, #3d3b31);
-}
-
-.zombie.shade {
-  filter: saturate(0.75) brightness(0.82);
-}
-
-.zombie.shade .body {
-  background: linear-gradient(180deg, #4c5262, #262a34);
-  border-color: #1b1e26;
-}
-
-.zombie.slowed {
-  filter: hue-rotate(155deg) saturate(1.25);
-}
-
-.zombie.burning {
-  filter: sepia(0.65) saturate(1.7);
+  bottom: 5px;
+  width: 13px;
+  height: 7px;
+  border-radius: 999px;
+  background: #5a4230;
+  box-shadow: 16px 0 #5a4230, 31px 0 #5a4230;
+  animation: shuffle 500ms steps(2) infinite;
 }
 
 .hpbar {
   position: absolute;
-  left: 8px;
-  right: 8px;
-  top: -8px;
+  left: 9px;
+  right: 9px;
+  top: -10px;
   height: 4px;
   border-radius: 999px;
   background: #e54d42;
   transform-origin: left center;
 }
 
-.zombie .head {
+.dog .dog-name {
   position: absolute;
-  left: 10px;
-  top: 3px;
-  width: 31px;
-  height: 28px;
-  border-radius: 50%;
-  background: #93a392;
-  border: 2px solid #526359;
+  left: 5px;
+  right: 1px;
+  bottom: -13px;
+  color: #3b4c40;
+  font-size: 0.58rem;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-.zombie .head::before {
+.dog.bichon .body,
+.dog.bichon .head,
+.dog.bichon .snout {
+  background: linear-gradient(180deg, #fffef8, #eadfcb);
+}
+
+.dog.bichon .ear {
+  background: #eadfcb;
+}
+
+.dog.schnauzer .body,
+.dog.schnauzer .head {
+  background: linear-gradient(180deg, #bfc7c5, #6f7777);
+}
+
+.dog.schnauzer .snout {
+  background: #d8dcda;
+}
+
+.dog.schnauzer .ear {
+  background: #4e5454;
+}
+
+.dog.schnauzer .snout::before {
   content: "";
   position: absolute;
-  left: 7px;
-  top: 10px;
-  width: 5px;
-  height: 5px;
+  left: 1px;
+  right: 5px;
+  bottom: -4px;
+  height: 7px;
   border-radius: 50%;
-  background: #1f2926;
-  box-shadow: 12px 0 #1f2926;
+  background: #e7ece9;
 }
 
-.zombie .feet {
-  position: absolute;
-  left: 8px;
-  bottom: 2px;
-  width: 14px;
-  height: 7px;
-  border-radius: 999px;
-  background: #252d2b;
-  box-shadow: 22px 0 #252d2b;
-  animation: shuffle 600ms steps(2) infinite;
+.dog.corgi .body,
+.dog.corgi .head {
+  background: linear-gradient(180deg, #f1a84b, #bb6429);
+}
+
+.dog.corgi .snout {
+  background: #fff4df;
+}
+
+.dog.corgi .ear {
+  height: 21px;
+  border-radius: 80% 20% 20% 80%;
+  background: #a95724;
+}
+
+.dog.husky .body,
+.dog.husky .head {
+  background: linear-gradient(180deg, #8b98a4, #3d4650);
+}
+
+.dog.husky .head {
+  box-shadow: inset 0 12px 0 #f5f6f0;
+}
+
+.dog.husky .snout {
+  background: #f5f6f0;
+}
+
+.dog.husky .ear {
+  background: #343d47;
+}
+
+.dog.mastiff {
+  width: 75px;
+  height: 74px;
+}
+
+.dog.mastiff .body {
+  width: 53px;
+  height: 35px;
+  top: 27px;
+  background: linear-gradient(180deg, #7a4a31, #442818);
+}
+
+.dog.mastiff .head {
+  left: 45px;
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(180deg, #835135, #3f2517);
+}
+
+.dog.mastiff .snout {
+  top: 27px;
+  background: #2f2119;
+}
+
+.dog.mastiff .ear {
+  background: #2f2119;
+}
+
+.dog.slowed {
+  filter: hue-rotate(155deg) saturate(1.25);
+}
+
+.dog.startled {
+  filter: sepia(0.55) saturate(1.8);
 }
 
 .pea {
@@ -833,6 +1026,12 @@ h1 {
   }
   100% {
     transform: translateX(2px);
+  }
+}
+
+@keyframes tailWag {
+  to {
+    transform: rotate(18deg);
   }
 }
 
