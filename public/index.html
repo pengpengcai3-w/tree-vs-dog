@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8fcf69">
+    <title>庭院防线</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="topbar" aria-label="游戏状态">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <h1>庭院防线</h1>
+            <p id="statusText">守住夜幕前的花园</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter sun-meter">
+            <span class="meter-icon sun-orb" aria-hidden="true"></span>
+            <span id="sunCount">120</span>
+          </div>
+          <div class="meter">
+            <span>第</span>
+            <strong id="waveCount">1</strong>
+            <span>波</span>
+          </div>
+          <div class="meter">
+            <span id="scoreCount">0</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="pauseBtn" type="button" title="暂停">
+            <span aria-hidden="true">||</span>
+          </button>
+          <button id="restartBtn" type="button" title="重开">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="play-area">
+        <aside class="deck" aria-label="植物卡片">
+          <button class="plant-card selected" type="button" data-plant="sprout">
+            <span class="plant-art sprout-art" aria-hidden="true"></span>
+            <span class="plant-name">豆苗</span>
+            <span class="plant-cost">50</span>
+          </button>
+          <button class="plant-card" type="button" data-plant="sunbloom">
+            <span class="plant-art sunbloom-art" aria-hidden="true"></span>
+            <span class="plant-name">日葵</span>
+            <span class="plant-cost">25</span>
+          </button>
+          <button class="plant-card" type="button" data-plant="bark">
+            <span class="plant-art bark-art" aria-hidden="true"></span>
+            <span class="plant-name">木盾</span>
+            <span class="plant-cost">75</span>
+          </button>
+        </aside>
+
+        <div class="board-wrap">
+          <div id="board" class="board" aria-label="草坪棋盘"></div>
+          <div id="entities" class="entities" aria-hidden="true"></div>
+          <div id="projectiles" class="projectiles" aria-hidden="true"></div>
+          <div id="floating" class="floating" aria-hidden="true"></div>
+          <div id="overlay" class="overlay hidden">
+            <div class="overlay-panel">
+              <h2 id="overlayTitle">准备开始</h2>
+              <p id="overlayText">点击开始后，第一波会从右侧出现。</p>
+              <button id="startBtn" type="button">开始</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
